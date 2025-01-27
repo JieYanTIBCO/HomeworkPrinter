@@ -1,0 +1,24 @@
+# 作业打印系统配置
+
+defaults:
+  output_dir: ./output
+  template_dir: ./templates
+  font_size: 12
+  page_margin: 20
+  line_spacing: 1.5
+
+math:
+  equations_per_page: 30
+  columns: 3
+  difficulty_levels:
+    - easy
+    - medium
+    - hard
+
+english:
+  words_per_page: 50
+  sentence_length: 5-10
+
+chinese:
+  characters_per_page: 100
+  pinyin: true
