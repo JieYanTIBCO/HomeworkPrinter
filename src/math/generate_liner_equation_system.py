@@ -116,32 +116,23 @@ def draw_equation(c, x, y, eq_num, equations, line_height):
     c.drawString(x, y + 2 * mm, f"{eq_num}.")
 
     # 大括号定位参数
-    brace_x = x + 8 * mm
-    eq_x = brace_x + 5 * mm
+    brace_x = x + 3 * mm
+    eq_x = brace_x + 5 * mm  # Adjusted to move equations closer to the brace
 
-    # 绘制大括号
-    c.setFont("DejaVu", 14)
-    c.drawString(brace_x, y, "⎧")
-    c.drawString(brace_x, y - 0.5 * line_height, "⎨")
-    c.drawString(brace_x, y - line_height, "⎩")
+    # 绘制大括号 using a larger font size
+    c.setFont("Helvetica", 35)  # Increased font size for larger brace
+    c.drawString(brace_x, y - line_height, "{")
 
     # 绘制方程组
-    c.setFont("DejaVu", 12)
+    c.setFont("Helvetica", 12)
     c.drawString(eq_x, y, equations[0])
-    c.drawString(eq_x, y - line_height, equations[1])
+    c.drawString(eq_x, y - 1.5 * line_height, equations[1])
 
     return y - 2 * line_height  # 返回下一个方程组的起始Y坐标
 
 
-def create_pdf(filename, num_columns=3, equations_per_column=5, page_num=1):
+def create_pdf(filename, num_columns=3, equations_per_column=4, page_num=2):
     """生成PDF主函数"""
-    # 注册字体
-    try:
-        pdfmetrics.registerFont(TTFont("DejaVu", "DejaVuSans.ttf"))
-    except:
-        print("Error: DejaVuSans.ttf font file not found")
-        return
-
     # 计算布局参数
     params = {"num_columns": num_columns}
     layout = calculate_layout(params)
@@ -243,7 +234,6 @@ def create_pdf(filename, num_columns=3, equations_per_column=5, page_num=1):
 
 
 if __name__ == "__main__":
-    #
 
     pdf_filename = f"equations_{datetime.now().strftime('%Y%m%d%H%M%S')}.pdf"
     # print pdf location
