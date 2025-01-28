@@ -172,6 +172,14 @@ def create_pdf(filename, num_columns=3, equations_per_column=5, page_num=1):
         ]
         column_y = [layout["base_y"]] * num_columns
 
+        # 绘制页眉在右上角
+        c.setFont("Helvetica", 8)
+        c.drawRightString(
+            letter[0] - layout["margin"],
+            letter[1] - 12 * mm,
+            f"Page {page+1}/{page_num}",
+        )
+
         # 存储本页答案
         solutions = []
 
@@ -206,7 +214,10 @@ def create_pdf(filename, num_columns=3, equations_per_column=5, page_num=1):
                 )
                 eq_index = col_start + idx
                 equations, solution = col_data[idx]
-                eq_num = start_idx + eq_index + 1
+                eq_num = eq_index + 1
+                # uncomment below to print total equations number
+                # eq_num = start_idx + eq_index + 1
+
                 solutions.append(solution)
 
                 # 绘制方程组
