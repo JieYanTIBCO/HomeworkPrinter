@@ -241,3 +241,5 @@ if __name__ == "__main__":
         f"Generating PDF file with linear equations and solutions at {Path.cwd()}/{pdf_filename}"
     )
     create_pdf(pdf_filename, num_columns=3, equations_per_column=4, page_num=5)
+
+    logger.info("PDF file generated successfully.")
